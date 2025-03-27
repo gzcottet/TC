@@ -10,3 +10,5 @@ Este projeto foi criado usando [Expo](https://expo.dev) e [`create-expo-app`](ht
 1. Instale as dependências:  
    ```bash
    npm install
+   #testedecomitt
+   Forkiando

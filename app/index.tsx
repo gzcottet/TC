@@ -1,13 +1,18 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import AppNavigator from "../Navi/AppNavigator";
 import CloudBackground from "../components/CloudBackground";
-import LoginScreen from "../screens/LoginScreen"; 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <CloudBackground /> {}
-      <LoginScreen /> {}
+      {/* Background com nuvens */}
+      <CloudBackground />
+      
+      {/* Conteúdo principal */}
+      <View style={styles.overlay}>
+        <AppNavigator />
+      </View>
     </View>
   );
 }
@@ -15,8 +20,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#3A8FFF", 
+    position: "relative",
+  },
+  overlay: {
+    flex: 1,
+    width: "100%",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1, // Garante que fique acima do background
   },
 });

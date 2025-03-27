@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, Image, View } from "react-native";
 
 export default function CloudBackground() {
@@ -7,21 +8,22 @@ export default function CloudBackground() {
       <Image
         source={require("../assets/images/nuvem.png")}
         style={[styles.cloud, styles.cloud1]}
+        resizeMode="contain"
       />
       
       {/* Nuvem 2 */}
       <Image
         source={require("../assets/images/nuvem.png")}
         style={[styles.cloud, styles.cloud2]}
+        resizeMode="contain"
       />
       
       {/* Nuvem 3 */}
       <Image
         source={require("../assets/images/nuvem.png")}
         style={[styles.cloud, styles.cloud3]}
+        resizeMode="contain"
       />
-
-     
     </View>
   );
 }
@@ -29,28 +31,28 @@ export default function CloudBackground() {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 0, // Valor menor que o overlay
   },
   cloud: {
     position: "absolute",
-    width: 170, // Tamanho reduzido para nuvens pequenas
-    height: 120, // Tamanho reduzido para nuvens pequenas
-    opacity: 1, // Opacidade ajustada
+    width: 200,
+    height: 130,
+    opacity: 0.8,
   },
   cloud1: {
     top: "30%", 
-    left: "-6%",
+    left: "-10%",
   },
   cloud2: {
-    top: "33%", // Posição da segunda nuvem
-    right: "-3%",
+    top: "10%",
+    right: "-15%",
   },
   cloud3: {
-    top: "33%", // Posição da terceira nuvem
+    top: "31%", 
     left: "30%",
-  
   },
 });

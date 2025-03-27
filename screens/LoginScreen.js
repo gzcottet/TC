@@ -1,26 +1,47 @@
-import { StyleSheet, TextInput, TouchableOpacity, Text, View } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (email === "teste@email.com" && password === "123456") {
+      alert("Login bem-sucedido!");
+      navigation.navigate("Preferences"); // Redireciona para a tela de Preferências
+    } else {
+      alert("Credenciais inválidas!");
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {}
-      <View style={styles.topArea}>
-        <Text style={styles.welcomeText}>Bem-vndo</Text> {}
+      <View style={styles.welcomeTextContainer}>
+        <Text style={styles.welcomeText}>Bem-vindo!</Text>
       </View>
 
-      {}
-      <View style={styles.content}>
-        <TextInput placeholder="Email" style={styles.input} placeholderTextColor="#666" />
-        <TextInput placeholder="Senha" secureTextEntry style={styles.input} placeholderTextColor="#666" />
-        
-        <TouchableOpacity style={styles.button}>
+      <View style={styles.loginContainer}>
+        <Text style={styles.title}>Login</Text>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Digite seu e-mail"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={setEmail}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Digite sua senha"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity>
-          <Text style={styles.link}>
-            Não tem conta? <Text style={styles.linkBold}>Cadastre-se</Text>
-          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -30,54 +51,61 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0000", 
+    justifyContent: "flex-start", // Alinha o conteúdo no topo
+    alignItems: "center",
+    backgroundColor: "#fff",
+    paddingTop: "10%", // Cria um espaço superior
   },
-  topArea: {
-    height: "60%", 
-    justifyContent: "center", 
-    alignItems: "center", 
+  welcomeTextContainer: {
+    width: "100%",
+    height: "40%", // Área de 40% da tela
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#3A8FFF", // Cor do topo
   },
   welcomeText: {
-    fontSize: 35, 
-    fontWeight: "bold", 
-    color: "#ffff", 
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#fff",
   },
-  content: {
-    height: "60%", 
-    backgroundColor: "#fff", 
-    borderTopLeftRadius: 0, 
-    borderTopRightRadius: 0, 
-    paddingHorizontal: 160, 
-    justifyContent: "center", 
-    alignItems: "center", 
+  loginContainer: {
+    width: "100%",
+    height: "60%", // O restante da tela (60%)
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    padding: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
   },
   input: {
-    width: "360%", 
-    height: 80,
-    backgroundColor: "#F2F2F2", 
+    width: "80%",
+    padding: 12,
+    borderWidth: 1,
+    borderColor: "#ccc",
     borderRadius: 8,
-    paddingHorizontal: 15,
     marginBottom: 15,
+    fontSize: 16,
   },
   button: {
-    marginTop: 40,
     backgroundColor: "#007AFF",
-    padding: 15,
-    borderRadius: 15,
+    padding: 12,
+    borderRadius: 8,
+    width: "80%",
     alignItems: "center",
-    width: "200%", 
   },
   buttonText: {
     color: "#fff",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
-  link: {
-    color: "#007AFF",
-    marginTop: 30,
-    fontSize: 15,
-  },
-  linkBold: {
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
