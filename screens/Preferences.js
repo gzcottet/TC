@@ -38,7 +38,7 @@ export default function Preferences() {
     {
       title: "Quais atividades você gosta?",
       field: "activity_preferences",
-      options: ["city_tour", "museus", "parques", "compras", "gastronomia"],
+      options: ["tour cultural", "museus", "parques", "compras", "gastronomia"],
     },
     {
       title: "O que você mais gosta de fazer?",
@@ -96,14 +96,15 @@ export default function Preferences() {
         />
       ))}
 
-      {/* Container branco na parte superior */}
+      {/* Container branco no topo */}
       <View style={styles.whiteContainer}>
         <Text style={styles.whiteContainerText}></Text>
       </View>
 
-      {/* Título acima do container e das nuvens */}
+      {/* Título principal */}
       <Text style={styles.titleAboveAll}>{steps[currentStep].title}</Text>
 
+      {/* Overlay central */}
       <View style={styles.overlay}>
         <View style={styles.stepsContainer}>
           {steps.map((step, index) => (
@@ -117,6 +118,7 @@ export default function Preferences() {
           ))}
         </View>
 
+        {/* Opções clicáveis */}
         <View style={styles.optionsContainer}>
           {steps[currentStep].options.map((option, index) => (
             <TouchableOpacity
@@ -124,7 +126,8 @@ export default function Preferences() {
               onPress={() => handleSelect(option)}
               style={[
                 styles.option,
-                preferences[steps[currentStep].field].includes(option) && styles.selectedOption,
+                preferences[steps[currentStep].field].includes(option) &&
+                  styles.selectedOption,
               ]}
             >
               <Text style={styles.optionText}>{option}</Text>
@@ -132,6 +135,10 @@ export default function Preferences() {
           ))}
         </View>
 
+        {/* Novo texto adicionado aqui */}
+        <Text style={styles.selectionLimitText}>Selecione no máximo 3 opções</Text>
+
+        {/* Botões de navegação */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={handleBack} style={styles.navButton}>
             <Text style={styles.navButtonText}>Voltar</Text>
@@ -151,12 +158,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#007AFF",
-    position: "relative", 
+    position: "relative",
   },
   cloud: {
     position: "absolute",
     opacity: 1,
-    zIndex: 10, // Abaixo do container branco e do título
+    zIndex: 10,
   },
   whiteContainer: {
     width: "100%",
@@ -183,7 +190,7 @@ const styles = StyleSheet.create({
   titleAboveAll: {
     position: "absolute",
     top: "12%", // Posiciona acima do container e das nuvens
-    left: 1,
+    left: 0,
     right: 0,
     textAlign: "center",
     fontSize: 23,
@@ -217,7 +224,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    marginBottom: 30,
+    marginBottom: 10,
   },
   option: {
     margin: 10,
@@ -235,6 +242,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#000",
     textAlign: "center",
+  },
+  selectionLimitText: {
+    fontSize: 13, // Tamanho pequeno
+    color: "#fff", // Cor cinza para indicar uma mensagem secundária
+    textAlign: "center", // Centraliza o texto
+    marginBottom: 10, // Espaçamento para os botões abaixo
   },
   buttonContainer: {
     flexDirection: "row",
